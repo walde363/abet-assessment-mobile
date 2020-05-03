@@ -1,0 +1,1 @@
+declare module 'react-native-azure-ad-2'; 
