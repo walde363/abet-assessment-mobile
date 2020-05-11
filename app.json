@@ -3,7 +3,6 @@
     "name": "React",
     "slug": "React",
     "privacy": "public",
-    "sdkVersion": "36.0.0",
     "platforms": [
       "ios",
       "android",
