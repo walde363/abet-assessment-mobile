@@ -62,13 +62,13 @@ function DrawerContent({ navigation, state, route }){
                 </TouchableOpacity>
 
                 <TouchableOpacity onPress={() => navigation.navigate(routes[1].name)} style={{flexDirection:'row'}}>
-                    <View style={{backgroundColor:'black', height:50, width:'95%', borderRadius:10, padding:5}}>
+                    <View style={{backgroundColor:'green', height:50, width:'95%', borderRadius:10, padding:5}}>
                         <Text style={{ fontSize: 25, color: 'white' }}>{routes[1].name}</Text>
                     </View>
                 </TouchableOpacity>
 
                 <TouchableOpacity onPress={() => navigation.navigate(routes[2].name)} style={{flexDirection:'row'}}>
-                    <View style={{backgroundColor:'black', height:50, width:'95%', borderRadius:10, padding:5}}>
+                    <View style={{backgroundColor:'green', height:50, width:'95%', borderRadius:10, padding:5}}>
                         <Text style={{ fontSize: 25, color: 'white' }}>{routes[2].name}</Text>
                     </View>
                 </TouchableOpacity>
