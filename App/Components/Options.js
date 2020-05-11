@@ -43,7 +43,6 @@ const Options = ({ navigation, route }) => {
 
 function DrawerContent({ navigation, state, route }){
     const routes = state.routes
-    const [AIPcolor, changeAIPcolor] = useState('green')
     return (
         <View style={{ paddingTop: 50, backgroundColor: 'green', height: '100%' , alignItems:'center'}}>
             
@@ -57,19 +56,19 @@ function DrawerContent({ navigation, state, route }){
             <View style={{ height: '25%', justifyContent: 'space-around', marginTop:50, marginBottom:325}}>
 
                 <TouchableOpacity onPress={() => navigation.navigate(routes[0].name)} style={{flexDirection:'row'}}>
-                    <View style={{backgroundColor:{AIPcolor}, height:50, width:'95%', borderRadius:10, padding:5}}>
+                    <View style={{backgroundColor:'green', height:50, width:'95%', borderRadius:10, padding:5}}>
                         <Text style={{ fontSize: 25, color: 'white' }}>{routes[0].name}</Text>
                     </View>
                 </TouchableOpacity>
 
                 <TouchableOpacity onPress={() => navigation.navigate(routes[1].name)} style={{flexDirection:'row'}}>
-                    <View style={{backgroundColor:'black', height:50, width:'95%', borderRadius:10, padding:5}}>
+                    <View style={{backgroundColor:'green', height:50, width:'95%', borderRadius:10, padding:5}}>
                         <Text style={{ fontSize: 25, color: 'white' }}>{routes[1].name}</Text>
                     </View>
                 </TouchableOpacity>
 
                 <TouchableOpacity onPress={() => navigation.navigate(routes[2].name)} style={{flexDirection:'row'}}>
-                    <View style={{backgroundColor:'black', height:50, width:'95%', borderRadius:10, padding:5}}>
+                    <View style={{backgroundColor:'green', height:50, width:'95%', borderRadius:10, padding:5}}>
                         <Text style={{ fontSize: 25, color: 'white' }}>{routes[2].name}</Text>
                     </View>
                 </TouchableOpacity>
