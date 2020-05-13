@@ -1,8 +1,5 @@
 import React from 'react';
 import { View, Text } from 'react-native';
-import { FontAwesome } from '@expo/vector-icons';
-import PupopMenu from './PupopMenu';
-import { TouchableOpacity } from 'react-native-gesture-handler';
 
 import styles from '../styles/styles';
 
