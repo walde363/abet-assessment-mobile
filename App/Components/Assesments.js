@@ -33,11 +33,11 @@ function Item({ data, navigation }) {
                         <Text style={styles.assesmentText}>{data.name}</Text>
                     </View>
                     <Text style={styles.assesmentText}>Term</Text>
-                    <Text>{data.term}</Text>
+                    <Text>{data.term_name}</Text>
                 </View>
                 <View style={{ alignItems: 'center', width: '50%' }}>
                     <Text style={styles.assesmentText}>Course</Text>
-                    <Text>{data.course}</Text>
+                    <Text>{data.course_name}</Text>
                 </View>
             </View>
         </TouchableOpacity>

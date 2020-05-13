@@ -1,4 +1,5 @@
-import React  from 'react';
+import React from 'react';
+import { StyleSheet } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Entypo } from '@expo/vector-icons';
 
@@ -8,57 +9,65 @@ const Tab = createBottomTabNavigator();
 
 const Options = ({ navigation, route }) => {
 
-    const userEmail = route.params.user.userPrincipalName;
+  const userEmail = route.params.user.userPrincipalName;
 
-    console.log("User Email: ", userEmail);
+  console.log("User Email: ", userEmail);
 
-    return (
-        <Tab.Navigator 
-        tabBarOptions={{
-            activeBackgroundColor:'darkgreen', 
-            activeTintColor:'white',
-            inactiveBackgroundColor:'green' 
-        }}>
-            <Tab.Screen
-                name='Assessment in Progress'
-                component={AssesmentsMenu}
-                initialParams={{ title: 'Assessment in Progress', status: 'inProcess' }} 
-                options={{
-                    tabBarIcon: () => (
-                      <Entypo
-                      name='pencil'
-                      size={30}
-                      color={'white'}/>
-                    )
-                  }}/>
+  return (
+    <Tab.Navigator
+      tabBarOptions={{
+        activeBackgroundColor: 'darkgreen',
+        activeTintColor: 'white',
+        inactiveBackgroundColor: 'green',
+        labelStyle: {fontWeight: 'bold', fontSize: 12, color: 'black'}
+      }}>
+      <Tab.Screen
+        styles={styles.text}
+        name='Assessment in Progress'
+        component={AssesmentsMenu}
+        initialParams={{ title: 'Assessment in Progress', status: 'in_progress' }}
+        options={{
+          tabBarIcon: () => (
+            <Entypo
+              name='pencil'
+              size={30}
+              color={'white'} />
+          )
+        }} />
 
-            <Tab.Screen
-                name='Assessment Complete'
-                component={AssesmentsMenu}
-                initialParams={{ title: 'Assessment Complete', status: 'complete' }} 
-                options={{
-                    tabBarIcon: () => (
-                      <Entypo
-                      name='check'
-                      size={30}
-                      color={'white'}/>
-                    )
-                  }}/>
+      <Tab.Screen
+        name='Assessment Complete'
+        component={AssesmentsMenu}
+        initialParams={{ title: 'Assessment Complete', status: 'complete' }}
+        options={{
+          tabBarIcon: () => (
+            <Entypo
+              name='check'
+              size={30}
+              color={'white'} />
+          )
+        }} />
 
-            <Tab.Screen
-                name='Assessment Archive'
-                component={AssesmentsMenu}
-                initialParams={{ title: 'Assessment Archive', status: 'archive' }} 
-                options={{
-                    tabBarIcon: () => (
-                      <Entypo
-                      name='folder'
-                      size={30}
-                      color={'white'}/>
-                    )
-                  }}/>
-        </Tab.Navigator>
-    )
+      <Tab.Screen
+        name='Assessment Archive'
+        component={AssesmentsMenu}
+        initialParams={{ title: 'Assessment Archive', status: 'archive' }}
+        options={{
+          tabBarIcon: () => (
+            <Entypo
+              name='folder'
+              size={30}
+              color={'white'} />
+          )
+        }} />
+    </Tab.Navigator>
+  )
 }
+
+const styles = StyleSheet.create({
+  text: {
+    color: 'black'
+  }
+});
 
 export default Options; 

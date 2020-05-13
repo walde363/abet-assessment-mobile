@@ -69,12 +69,14 @@ const styles = StyleSheet.create({
     },
     welcomeConteiner:
     {
+        marginLeft: '5%',
         backgroundColor: 'rgba(255, 255, 255, 0.8)',
         height: '45%',
-        width: '100%',
+        width: '90%',
         paddingTop: 50,
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
+        
     },
     loginButtonContainer:
     {
