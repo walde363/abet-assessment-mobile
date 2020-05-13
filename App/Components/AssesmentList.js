@@ -12,9 +12,6 @@ const AssesmentList = ({navigation, route}) => {
     return(
     <View style={styles.AllOptionsConteiner}>
             <View style={styles.optionConteiner}>
-                <TouchableOpacity onPress={() => navigation.openDrawer()}>
-                    <FontAwesome name='bars' size={40} color='white'/>
-                </TouchableOpacity>
                 <Text style={styles.optionText}>{route.params?.title}</Text>
             </View>
             <Assesmensts
