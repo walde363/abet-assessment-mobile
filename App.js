@@ -36,8 +36,9 @@ export default class App extends React.Component {
 
   async callAPI(){
     try{
-      let response = await fetch('https://127.0.0.1:3000/api/get/user/17')
+      let response = await fetch('http://192.168.0.8:3000/api/get/user/10')
     let json = await response.json()
+    console.log("RESPONSE: ", json);
     this.setState({data:json})
     }catch(err){
       console.log(err)

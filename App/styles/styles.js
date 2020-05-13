@@ -68,6 +68,11 @@ const styles = StyleSheet.create({
         borderRadius:50, 
         padding:10, 
         margin:10
+    },
+    AssessmentNameStyle: {
+        fontStyle: 'italic',
+        fontWeight: 'bold',
+        fontSize: 25,
     }
 })
 
