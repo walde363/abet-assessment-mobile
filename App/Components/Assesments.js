@@ -28,7 +28,9 @@ function Item({ data, navigation }) {
             <View style={styles.assesmentConteiner}>
                 <View style={{ alignItems: 'center', width: '50%' }}>
                     <View style={{ alignItems: 'center', marginBottom: 10 }}>
-                        <Text style={styles.AssessmentNameStyle}>{data.name}</Text>
+            
+                        {/* <Text style={styles.assesmentText}>Name</Text> */}
+                        <Text style={styles.assesmentText}>{data.name}</Text>
                     </View>
                     <Text style={styles.assesmentText}>Term</Text>
                     <Text>{data.term}</Text>
