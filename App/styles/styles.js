@@ -8,17 +8,17 @@ const styles = StyleSheet.create({
     },
     optionConteiner: {
         backgroundColor: 'green',
-        width: '111%',
-        height: '15%',
-        justifyContent: 'center',
-        justifyContent: 'space-around',
-        alignItems: 'center',
+        width: '100%',
+        height: '10%',
+        alignItems: 'flex-end',
         flexDirection: 'row',
-        padding: 20
+        paddingBottom: 10,
+        paddingLeft: 10
     },
     optionText: {
-        fontSize: 30,
-        color: 'white'
+        fontSize: 24,
+        color: 'white',
+        marginRight: '20%'
     },
     logoContiainer:
     {
@@ -41,7 +41,14 @@ const styles = StyleSheet.create({
     assesmentText:
     {
         fontWeight: 'bold',
-        fontSize: 20
+        fontSize: 20,
+        textAlign: "center"
+    },
+    outcomeSection: {
+        fontWeight: 'bold',
+        fontSize: 20,
+        textAlign: "center",
+        paddingTop: 10,
     },
     loginConteiner:
     {
@@ -76,7 +83,7 @@ const styles = StyleSheet.create({
         paddingTop: 50,
         alignItems: 'center',
         justifyContent: 'center',
-        
+
     },
     loginButtonContainer:
     {
@@ -87,6 +94,15 @@ const styles = StyleSheet.create({
         borderRadius: 10,
         alignItems: 'center',
         justifyContent: 'center'
+    },
+    containerImageNotFound: {
+        borderWidth: 1
+    },
+    notFoundImage: {
+        width: 250,
+        
+        borderRadius: 5,
+        marginBottom: 5
     }
 
 })

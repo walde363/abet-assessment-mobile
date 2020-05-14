@@ -1,5 +1,4 @@
 import React from 'react';
-import { StyleSheet } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Entypo } from '@expo/vector-icons';
 
@@ -19,10 +18,9 @@ const Options = ({ navigation, route }) => {
         activeBackgroundColor: 'darkgreen',
         activeTintColor: 'white',
         inactiveBackgroundColor: 'green',
-        labelStyle: {fontWeight: 'bold', fontSize: 12, color: 'black'}
+        labelStyle: {fontWeight: 'bold', fontSize: 12, color: 'white'}
       }}>
       <Tab.Screen
-        styles={styles.text}
         name='Assessment in Progress'
         component={AssesmentsMenu}
         initialParams={{ title: 'Assessment in Progress', status: 'in_progress' }}
@@ -63,11 +61,5 @@ const Options = ({ navigation, route }) => {
     </Tab.Navigator>
   )
 }
-
-const styles = StyleSheet.create({
-  text: {
-    color: 'black'
-  }
-});
 
 export default Options; 
