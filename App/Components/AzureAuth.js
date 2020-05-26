@@ -26,7 +26,7 @@ export default class AzureAuth extends React.Component {
   // function to be called after login is successful
 	_onLoginSuccess(){
 		this.azureInstance.getUserInfo().then(result => {
-			console.log(result); 
+			// console.log(result); 
 			this.props.navigation.navigate('Options', {user:result});
 		}).catch(err => {
 			console.log(err);

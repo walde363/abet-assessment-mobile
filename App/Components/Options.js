@@ -36,7 +36,7 @@ const Options = ({ navigation, route }) => {
       <Tab.Screen
         name='Assessment Complete'
         component={AssesmentsMenu}
-        initialParams={{ title: 'Assessment Complete', status: 'complete' }}
+        initialParams={{ title: 'Assessment Complete', status: 'completed' }}
         options={{
           tabBarIcon: () => (
             <Entypo

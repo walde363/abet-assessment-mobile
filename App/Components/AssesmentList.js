@@ -34,7 +34,7 @@ const AssesmentList = ({ navigation, route }) => {
         try {
             const response = await yelp.get('/get/assessments', {});
 
-            // console.log("API RESPONSE: ", response);
+            // console.log("API RESPONSE: ", response.data);
 
             setAssessments(response.data);
         } catch (error) {
@@ -45,7 +45,9 @@ const AssesmentList = ({ navigation, route }) => {
 
     // filter the assessments by status
     const filterByStatus = (status) => {
-        return assessments.filter(each => each.status === status);
+        let result = assessments.filter(each => each.status === status);
+        console.log(`ASSESSMENT ${status}: `, assessments.length); 
+        return result;
     }
 
 
@@ -182,7 +184,10 @@ const AssesmentList = ({ navigation, route }) => {
 
                             <TouchableOpacity
                                 style={innerStyle.submitBtn}
-                                onPress={() => fetchAssessmentsWithAttr(selectedDepartment, selectedOutcome)}>
+                                onPress={() => {
+                                    fetchAssessmentsWithAttr(selectedDepartment, selectedOutcome)
+                                    setModalVisible(false);
+                                }}>
 
                                 <Text style={{ textAlign: "center", color: 'white', fontWeight: 'bold' }}>Submit</Text>
                             </TouchableOpacity>
