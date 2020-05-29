@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
     optionText: {
         fontSize: 24,
         color: 'white',
-        marginRight: '20%'
+        width: '80%',
     },
     logoContiainer:
     {
@@ -103,8 +103,7 @@ const styles = StyleSheet.create({
         
         borderRadius: 5,
         marginBottom: 5
-    }
-
+    },
 })
 
 export default styles; 

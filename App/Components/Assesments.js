@@ -8,9 +8,15 @@ export default class Assesments extends React.Component {
     constructor(props) {
         super(props)
     }
-    render() {
-        if (this.props.data.length > 0) {
 
+    render() {
+
+        // is the data is still loading, do nothing
+        if (this.props.isLoading) return null;
+
+
+        // if there is assessment avilable
+        if (this.props.data.length > 0) {
             return (
                 <MenuProvider skipInstanceCheck={true}>
                     <SectionList
@@ -24,12 +30,12 @@ export default class Assesments extends React.Component {
             return (
 
                 <View style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, justifyContent: 'center', alignItems: 'center' }}>
-                       <Image
+                    <Image
                         style={styles.notFoundImage}
-                        source={require('../../assets/not_found.png')} 
-                        />
-                        <Text style= {{fontSize: 18, fontWeight: 'bold'}}>
-                            It looks like there is not Assessments for this section.
+                        source={require('../../assets/not_found.png')}
+                    />
+                    <Text style={{ fontSize: 18, fontWeight: 'bold' }}>
+                        It looks like there is not Assessments for this section.
                         </Text>
                 </View>
             );

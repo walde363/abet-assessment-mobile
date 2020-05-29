@@ -41,6 +41,7 @@ const Options = ({ navigation, route }) => {
           tabBarIcon: () => (
             <Entypo
               name='check'
+
               size={30}
               color={'white'} />
           )
@@ -49,7 +50,7 @@ const Options = ({ navigation, route }) => {
       <Tab.Screen
         name='Assessment Archive'
         component={AssesmentsMenu}
-        initialParams={{ title: 'Assessment Archive', status: 'archive' }}
+        initialParams={{ title: 'Assessment Archive', status: 'archived' }}
         options={{
           tabBarIcon: () => (
             <Entypo

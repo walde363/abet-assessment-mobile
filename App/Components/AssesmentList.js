@@ -14,6 +14,9 @@ const AssesmentList = ({ navigation, route }) => {
     // state for assessments
     const [assessments, setAssessments] = useState([]);
 
+    // loading for assessment
+    const [isLoading, setLoading] = useState(true);
+
     // state for the modal -- filter button
     const [isModalVisible, setModalVisible] = useState(false);
 
@@ -37,6 +40,8 @@ const AssesmentList = ({ navigation, route }) => {
             // console.log("API RESPONSE: ", response.data);
 
             setAssessments(response.data);
+
+            setLoading(false);
         } catch (error) {
             // TODO: send a message to the user
             console.log("Error: ", error);
@@ -46,7 +51,7 @@ const AssesmentList = ({ navigation, route }) => {
     // filter the assessments by status
     const filterByStatus = (status) => {
         let result = assessments.filter(each => each.status === status);
-        console.log(`ASSESSMENT ${status}: `, assessments.length); 
+        console.log(`ASSESSMENT ${status}: `, assessments.length);
         return result;
     }
 
@@ -192,16 +197,15 @@ const AssesmentList = ({ navigation, route }) => {
                                 <Text style={{ textAlign: "center", color: 'white', fontWeight: 'bold' }}>Submit</Text>
                             </TouchableOpacity>
                         </View>
-
                     </View>
-
-
                 </View>
             </Modal>
+
 
             <Assesmensts
                 data={filterByStatus(route.params?.status)}
                 navigation={navigation}
+                isLoading={isLoading}
             />
 
         </View>
