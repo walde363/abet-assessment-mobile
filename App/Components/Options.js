@@ -2,7 +2,11 @@ import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Entypo } from '@expo/vector-icons';
 
+// component of assessment list
 import AssesmentsMenu from './AssesmentsMenu';
+
+// create assessment Screen
+import CreateAssessmentScreen from './CreateAssessmentScreen';
 
 const Tab = createBottomTabNavigator();
 
@@ -10,20 +14,18 @@ const Options = ({ navigation, route }) => {
 
   const userEmail = route.params.user.userPrincipalName;
 
-  console.log("User Email: ", userEmail);
-
   return (
     <Tab.Navigator
       tabBarOptions={{
         activeBackgroundColor: 'darkgreen',
         activeTintColor: 'white',
         inactiveBackgroundColor: 'green',
-        labelStyle: {fontWeight: 'bold', fontSize: 12, color: 'white'}
+        labelStyle: { fontWeight: 'bold', fontSize: 12, color: 'white' }
       }}>
       <Tab.Screen
-        name='Assessment in Progress'
+        name='in Progress'
         component={AssesmentsMenu}
-        initialParams={{ title: 'Assessment in Progress', status: 'in_progress' }}
+        initialParams={{ title: 'Assessment in Progress', status: 'in_progress', loadAgain: false}}
         options={{
           tabBarIcon: () => (
             <Entypo
@@ -34,27 +36,39 @@ const Options = ({ navigation, route }) => {
         }} />
 
       <Tab.Screen
-        name='Assessment Complete'
+        name='Completed'
         component={AssesmentsMenu}
-        initialParams={{ title: 'Assessment Complete', status: 'completed' }}
+        initialParams={{ title: 'Assessment Complete', status: 'completed', loadAgain: false}}
         options={{
           tabBarIcon: () => (
             <Entypo
               name='check'
-
               size={30}
               color={'white'} />
           )
         }} />
 
       <Tab.Screen
-        name='Assessment Archive'
+        name='Archived'
         component={AssesmentsMenu}
-        initialParams={{ title: 'Assessment Archive', status: 'archived' }}
+        initialParams={{ title: 'Assessment Archive', status: 'archived', loadAgain: false }}
         options={{
           tabBarIcon: () => (
             <Entypo
               name='folder'
+              size={30}
+              color={'white'} />
+          )
+        }} />
+
+      <Tab.Screen
+        name='ADD'
+        component={CreateAssessmentScreen}
+        initialParams={{ title: 'Create New Assessment', status: 'archived', userEmail, loadAgain: false }}
+        options={{
+          tabBarIcon: () => (
+            <Entypo
+              name='plus'
               size={30}
               color={'white'} />
           )

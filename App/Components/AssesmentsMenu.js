@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
+import { BackHandler, Alert } from "react-native";
+
 import { createStackNavigator } from '@react-navigation/stack';
 
 import AssesmentList from './AssesmentList';
@@ -8,6 +10,29 @@ import AssesmentReport from './AssesmentReport';
 const Stack = createStackNavigator();
 
 const AssesmentsMenu = ({ navigation, route }) => {
+
+    // if the users press the the back button
+    useEffect(() => {
+        const backAction = () => {
+            Alert.alert("Hold on!", "Are you sure you want to exit?", [
+                {
+                    text: "Cancel",
+                    onPress: () => null,
+                    style: "cancel"
+                },
+                { text: "YES", onPress: () => BackHandler.exitApp() }
+            ]);
+            return true;
+        };
+
+        const backHandler = BackHandler.addEventListener(
+            "hardwareBackPress",
+            backAction
+        );
+
+        return () => backHandler.remove();
+    }, []);
+
 
     return (
         <NavigationContainer independent={true}>

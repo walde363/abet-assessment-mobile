@@ -6,9 +6,7 @@ import styles from '../styles/styles';
 
 const AssesmentReport = ({ navigation, route }) => {
 
-    const assesmentData = route.params?.data
-
-    console.log(assesmentData);
+    const assesmentData = route.params?.data;
 
     return (
         <View style={styles.AllOptionsConteiner}>
@@ -16,7 +14,7 @@ const AssesmentReport = ({ navigation, route }) => {
 
             <View style={styles.optionConteiner}>
                 <TouchableOpacity style={{ padding: 5, paddingBottom: 0 }} onPress={() => navigation.pop()}>
-                    <Ionicons name='md-arrow-round-back' size={30} />
+                    <Ionicons name='md-arrow-round-back' size={30} color="white" />
                 </TouchableOpacity>
             </View>
 

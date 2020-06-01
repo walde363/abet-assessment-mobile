@@ -1,12 +1,24 @@
 import React from 'react';
-import { View, Text, SectionList, TouchableOpacity, Image } from 'react-native';
+import { View, Text, SectionList, TouchableOpacity, Image, RefreshControl } from 'react-native';
 import { MenuProvider } from 'react-native-popup-menu';
 
 import styles from '../styles/styles';
 
 export default class Assesments extends React.Component {
     constructor(props) {
-        super(props)
+        super(props);
+
+        this.state = { refreshing: false };
+    }
+
+    onRefresh() {
+        this.setState({ refreshing: true });
+
+        this.props.loadAgain();
+        
+        //Clear old data of the list
+        this.setState({ refreshing: false });
+
     }
 
     render() {
@@ -23,6 +35,13 @@ export default class Assesments extends React.Component {
                         sections={[{ title: this.props.data.status, data: this.props.data }]}
                         renderItem={({ item, index }) => <Item data={item} navigation={this.props.navigation} />}
                         keyExtractor={(item, index) => item + index}
+                        refreshControl={
+                            <RefreshControl
+                                //refresh control used for the Pull to Refresh
+                                refreshing={this.state.refreshing}
+                                onRefresh={this.onRefresh.bind(this)}
+                            />
+                        }
                         bounces={false} />
                 </MenuProvider>
             )

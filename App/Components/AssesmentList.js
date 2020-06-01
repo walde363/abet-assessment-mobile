@@ -10,7 +10,7 @@ import DropDownPicker from 'react-native-dropdown-picker';
 import yelp from '../api/yelp';
 
 const AssesmentList = ({ navigation, route }) => {
-
+    
     // state for assessments
     const [assessments, setAssessments] = useState([]);
 
@@ -51,7 +51,6 @@ const AssesmentList = ({ navigation, route }) => {
     // filter the assessments by status
     const filterByStatus = (status) => {
         let result = assessments.filter(each => each.status === status);
-        console.log(`ASSESSMENT ${status}: `, assessments.length);
         return result;
     }
 
@@ -201,13 +200,13 @@ const AssesmentList = ({ navigation, route }) => {
                 </View>
             </Modal>
 
-
+            {/* LIST OF ASSESSMENTS */}
             <Assesmensts
                 data={filterByStatus(route.params?.status)}
                 navigation={navigation}
                 isLoading={isLoading}
+                loadAgain={ () => fetchAssessments()}
             />
-
         </View>
     );
 
