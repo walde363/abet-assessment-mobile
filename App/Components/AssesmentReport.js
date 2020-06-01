@@ -38,8 +38,9 @@ const alertMessage = (title, message, onSuccess, onCancel) => {
 const AssesmentReport = ({ navigation, route }) => {
 
     const assesmentData = route.params?.data;
+    const userEmail = route.params?.userEmail;
 
-    // console.log(assesmentData);
+    console.log();
 
     return (
         <View style={styles.AllOptionsConteiner}>
@@ -110,7 +111,7 @@ const AssesmentReport = ({ navigation, route }) => {
                     <Text style={innerStyles.columnInformation}>{assesmentData.status}</Text>
                 </View>
 
-                {(assesmentData.status != "completed")
+                {(assesmentData.status != "completed" || (assesmentData.email.toLowerCase() != userEmail.toLowerCase()))
                     ? null
                     : (
                         <View style={innerStyles.containerCompleted}>

@@ -46,6 +46,7 @@ const AssesmentsMenu = ({ navigation, route }) => {
                     }}
                 />
                 <Stack.Screen
+                    initialParams={{ title: route.params?.title, status: route.params?.status, userEmail: route.params?.userEmail}}
                     name="AssesmentReport"
                     component={AssesmentReport}
                 />

@@ -25,7 +25,7 @@ const Options = ({ navigation, route }) => {
       <Tab.Screen
         name='in Progress'
         component={AssesmentsMenu}
-        initialParams={{ title: 'Assessment in Progress', status: 'in_progress', loadAgain: false}}
+        initialParams={{ title: 'Assessment in Progress', userEmail, status: 'in_progress', loadAgain: false }}
         options={{
           tabBarIcon: () => (
             <Entypo
@@ -38,7 +38,7 @@ const Options = ({ navigation, route }) => {
       <Tab.Screen
         name='Completed'
         component={AssesmentsMenu}
-        initialParams={{ title: 'Assessment Complete', status: 'completed', loadAgain: false}}
+        initialParams={{ title: 'Assessment Complete', userEmail, status: 'completed', loadAgain: false }}
         options={{
           tabBarIcon: () => (
             <Entypo
@@ -51,7 +51,7 @@ const Options = ({ navigation, route }) => {
       <Tab.Screen
         name='Archived'
         component={AssesmentsMenu}
-        initialParams={{ title: 'Assessment Archived', status: 'archive', loadAgain: false }}
+        initialParams={{ title: 'Assessment Archived', userEmail, status: 'archive', loadAgain: false }}
         options={{
           tabBarIcon: () => (
             <Entypo

@@ -172,7 +172,7 @@ const AssesmentList = ({ navigation, route }) => {
                         <Text style={{ fontSize: 20, textAlign: 'center', fontWeight: 'bold' }} > Filter Assessments </Text>
 
                         {/* SELECT DEPARTMENT */}
-                        <View style={{ marginTop: 20 }}>
+                        <View style={{ marginTop: 20, zIndex: 6000}}>
                             <Text style={{ fontSize: 18, textAlign: 'left', marginBottom: 5 }} > Choose Department</Text>
                             <DropDownPicker
                                 items={getAttrFromAssessment('dep_name', assessments)}
