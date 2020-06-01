@@ -29,6 +29,7 @@ const AssesmentList = ({ navigation, route }) => {
     // selected department
     const [selectedDepartment, setDepartmentForAPI] = useState('');
     const [selectedOutcome, setOutcomeForAPI] = useState('');
+    const [selectedTerm, setTermForAPI] = useState('');
 
 
     // getting assessments
@@ -98,18 +99,29 @@ const AssesmentList = ({ navigation, route }) => {
     }
 
     // get some assessments 
-    const fetchAssessmentsWithAttr = async (dept, outcome = null) => {
+    const fetchAssessmentsWithAttr = async (dept, outcome, term) => {
 
-        console.log(dept, outcome);
-        if (!dept) return;
+        console.log(dept, outcome, term);
+
+        if (!dept && !outcome && !term) return null;
 
         try {
             const response = await yelp.get('/get/assessments', {});
 
-            let temp = response.data.filter(each => each["dep_name"] === dept);
+            if (!response.data) return null;
+
+            let temp = response.data;
+
+            if (dept && dept != '') {
+                temp = response.data.filter(each => each["dep_name"] === dept);
+            }
 
             if (outcome && outcome != '') {
-                temp = temp.filter(each => each["outc_name"] === outcome)
+                temp = temp.filter(each => each["outc_name"] === outcome);
+            }
+
+            if (term && term != '') {
+                temp = temp.filter(each => each["term_name"] === term);
             }
 
             setAssessments(temp);
@@ -191,12 +203,26 @@ const AssesmentList = ({ navigation, route }) => {
                             />
                         </View>
 
+                        {/* SELECT TERM */}
+                        <View style={{ marginTop: 20 }}>
+                            <Text style={{ fontSize: 18, textAlign: 'left', marginBottom: 5 }} > Choose Academic Term</Text>
+                            <DropDownPicker
+                                items={getAttrFromAssessment("term_name", assessments)}
+                                defaultIndex={0}
+                                containerStyle={{ height: 40 }}
+                                arrowStyle={{ position: "absolute" }}
+                                labelStyle={{ textAlign: 'left', flex: 1 }}
+                                activeLabelStyle={{ color: 'gray' }}
+                                onChangeItem={item => setTermForAPI(item.label)}
+                            />
+                        </View>
+
                         <View style={styles.containerSubmit}>
 
                             <TouchableOpacity
                                 style={innerStyle.submitBtn}
                                 onPress={() => {
-                                    fetchAssessmentsWithAttr(selectedDepartment, selectedOutcome)
+                                    fetchAssessmentsWithAttr(selectedDepartment, selectedOutcome, selectedTerm);
                                     setModalVisible(false);
                                 }}>
 

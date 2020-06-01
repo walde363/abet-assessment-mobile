@@ -5,6 +5,36 @@ import { Ionicons } from '@expo/vector-icons';
 import styles from '../styles/styles';
 import yelp from '../api/yelp';
 
+const alertMessage = (title, message, onSuccess, onCancel) => {
+
+    let btnEvents = [
+        {
+            text: "Yes",
+            onPress: () => {
+
+                if (onSuccess)
+                    onSuccess();
+            },
+            style: "cancel"
+        }
+    ];
+
+    if (onCancel) {
+        btnEvents.push({
+
+            text: "Cancel",
+            onPress: () => {
+                if (onCancel) onCancel();
+            },
+            style: "cancel"
+
+        });
+    }
+
+    Alert.alert(title, message || "Cannot Update Assessment", btnEvents);
+};
+
+
 const AssesmentReport = ({ navigation, route }) => {
 
     const assesmentData = route.params?.data;
@@ -87,31 +117,29 @@ const AssesmentReport = ({ navigation, route }) => {
 
                             <TouchableOpacity style={[innerStyles.btn, innerStyles.btnProgress]}
                                 onPress={async () => {
-                                    let response = await yelp.post('/post/changeAssessmentStatus', { id: assesmentData.assessment_ID, status: "in_progress" })
-                                    response = response.data;
 
-                                    if (!response || !response.success) {
-                                        Alert.alert("Sorry!", response.message || "Cannot Update Assessment", [
-                                            {
-                                                text: "OK",
-                                                onPress: () => {
-                                                    navigation.pop()
-                                                },
-                                                style: "cancel"
-                                            },
-                                        ]);
-                                    } else {
 
-                                        Alert.alert("Success!", response.message, [
-                                            {
-                                                text: "OK",
-                                                onPress: () => {
-                                                    navigation.pop()
-                                                },
-                                                style: "cancel"
-                                            },
-                                        ]);
-                                    }
+                                    alertMessage("Hold on!", "Are you sure you want to move the assessment to the progress section?",
+                                        async () => {
+                                            let response = await yelp.post('/post/changeAssessmentStatus', { id: assesmentData.assessment_ID, status: "in_progress" });
+                                            response = response.data;
+
+                                            if (!response || !response.success) {
+
+                                                alertMessage("Sorry", "Cannot update the status of the Assessment, Please try later.", () => {
+                                                    return null;
+                                                });
+                                            } else {
+
+                                                alertMessage("Success!", response.message, () => {
+                                                    navigation.pop();
+                                                });
+                                            }
+                                        },
+                                        () => {
+                                            return null;
+                                        }
+                                    );
                                 }}
                             >
                                 <Text style={[innerStyles.textBtn]}> Move To Progress </Text>
@@ -119,31 +147,28 @@ const AssesmentReport = ({ navigation, route }) => {
 
                             <TouchableOpacity style={[innerStyles.btn, innerStyles.btnArchived]}
                                 onPress={async () => {
-                                    let response = await yelp.post('/post/changeAssessmentStatus', { id: assesmentData.assessment_ID, status: "archived" })
-                                    response = response.data;
 
-                                    if (!response || !response.success) {
-                                        Alert.alert("Sorry!", response.message || "Cannot Update Assessment", [
-                                            {
-                                                text: "OK",
-                                                onPress: () => {
-                                                    navigation.pop()
-                                                },
-                                                style: "cancel"
-                                            },
-                                        ]);
-                                    } else {
+                                    alertMessage("Hold on!", "Are you sure you want to move the assessment to the archived section?",
+                                        async () => {
+                                            let response = await yelp.post('/post/changeAssessmentStatus', { id: assesmentData.assessment_ID, status: "archived" })
+                                            response = response.data;
 
-                                        Alert.alert("Success!", response.message, [
-                                            {
-                                                text: "OK",
-                                                onPress: () => {
-                                                    navigation.pop()
-                                                },
-                                                style: "cancel"
-                                            },
-                                        ]);
-                                    }
+                                            if (!response || !response.success) {
+
+                                                alertMessage("Sorry", "Cannot update the status of the Assessment, Please try later.", () => {
+                                                    return null;
+                                                });
+                                            } else {
+
+                                                alertMessage("Success!", response.message, () => {
+                                                    navigation.pop();
+                                                });
+                                            }
+                                        },
+                                        () => {
+                                            return null;
+                                        }
+                                    );
                                 }}
                             >
                                 <Text style={[innerStyles.textBtn, innerStyles.textArchived]}> Move To Archived </Text>

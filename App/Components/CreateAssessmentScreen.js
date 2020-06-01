@@ -105,8 +105,6 @@ const CreateAssessmentScreen = ({ navigation, route }) => {
                 <Text style={innerStyle.optionText}>{route.params?.title}</Text>
             </View>
 
-
-
             <View style={{ marginBottom: 80, marginTop: 15, width: '100%', padding: 5 }}>
                 <ScrollView>
 
@@ -278,7 +276,7 @@ const innerStyle = StyleSheet.create({
     createBtn: {
         marginLeft: '10%',
         textAlign: 'center',
-        backgroundColor: '#28a745',
+        backgroundColor: '#006266',
         width: '80%',
         padding: 10,
         borderRadius: 5,
@@ -296,14 +294,13 @@ const innerStyle = StyleSheet.create({
         width: '100%',
     },
     optionConteiner: {
-        backgroundColor: 'green',
+        backgroundColor: '#006266',
         width: '100%',
         height: '10%',
         alignItems: 'flex-end',
         flexDirection: 'row',
         paddingBottom: 10,
         paddingLeft: 10,
-
     },
     optionText: {
         fontSize: 24,
@@ -332,6 +329,9 @@ const innerStyle = StyleSheet.create({
     },
     termBotton: {
         marginBottom: 100
+    },
+    keyContainer: {
+        flex: 1
     }
 });
 

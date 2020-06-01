@@ -7,7 +7,7 @@ const styles = StyleSheet.create({
         width: '100%',
     },
     optionConteiner: {
-        backgroundColor: 'green',
+        backgroundColor: '#006266',
         width: '100%',
         height: '10%',
         alignItems: 'flex-end',

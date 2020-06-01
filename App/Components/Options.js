@@ -17,9 +17,9 @@ const Options = ({ navigation, route }) => {
   return (
     <Tab.Navigator
       tabBarOptions={{
-        activeBackgroundColor: 'darkgreen',
+        activeBackgroundColor: 'rgba(0, 99, 102, 0.8)',
         activeTintColor: 'white',
-        inactiveBackgroundColor: 'green',
+        inactiveBackgroundColor: '#006266',
         labelStyle: { fontWeight: 'bold', fontSize: 12, color: 'white' }
       }}>
       <Tab.Screen
@@ -51,7 +51,7 @@ const Options = ({ navigation, route }) => {
       <Tab.Screen
         name='Archived'
         component={AssesmentsMenu}
-        initialParams={{ title: 'Assessment Archive', status: 'archived', loadAgain: false }}
+        initialParams={{ title: 'Assessment Archived', status: 'archive', loadAgain: false }}
         options={{
           tabBarIcon: () => (
             <Entypo
@@ -64,7 +64,7 @@ const Options = ({ navigation, route }) => {
       <Tab.Screen
         name='ADD'
         component={CreateAssessmentScreen}
-        initialParams={{ title: 'Create New Assessment', status: 'archived', userEmail, loadAgain: false }}
+        initialParams={{ title: 'Create New Assessment', userEmail, loadAgain: false }}
         options={{
           tabBarIcon: () => (
             <Entypo
