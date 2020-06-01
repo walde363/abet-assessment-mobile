@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, SectionList, TouchableOpacity, Image, RefreshControl } from 'react-native';
+import { View, Text, SectionList, TouchableOpacity, Image, RefreshControl, ScrollView, StyleSheet } from 'react-native';
 import { MenuProvider } from 'react-native-popup-menu';
 
 import styles from '../styles/styles';
@@ -15,7 +15,7 @@ export default class Assesments extends React.Component {
         this.setState({ refreshing: true });
 
         this.props.loadAgain();
-        
+
         //Clear old data of the list
         this.setState({ refreshing: false });
 
@@ -47,15 +47,27 @@ export default class Assesments extends React.Component {
             )
         } else {
             return (
+                <View style={innerStyle.container}>
 
-                <View style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, justifyContent: 'center', alignItems: 'center' }}>
-                    <Image
-                        style={styles.notFoundImage}
-                        source={require('../../assets/not_found.png')}
-                    />
-                    <Text style={{ fontSize: 18, fontWeight: 'bold' }}>
-                        It looks like there is not Assessments for this section.
+                    <ScrollView
+                        refreshControl={
+                            <RefreshControl
+                                //refresh control used for the Pull to Refresh
+                                refreshing={this.state.refreshing}
+                                onRefresh={this.onRefresh.bind(this)}
+                            />
+                        }
+                    >
+
+                        <Image
+                            style={styles.notFoundImage}
+                            source={require('../../assets/not_found.png')}
+                        />
+                        <Text style={{ fontSize: 18, fontWeight: 'bold' }}>
+                            It looks like there is not Assessments for this section.
                         </Text>
+
+                    </ScrollView>
                 </View>
             );
         }
@@ -81,11 +93,10 @@ function Item({ data, navigation }) {
 
                 </View>
 
-                <View style={{ alignItems: 'center', width: '50%' }}>
+                <View style={{ alignItems: 'center', width: '50%'}}>
                     <Text style={styles.assesmentText}>Course</Text>
                     <Text style={{ textAlign: "center" }}>{data.course_name} - {data.outc_name}</Text>
                     <Text style={{ textAlign: "center", paddingTop: 5, fontStyle: "italic", fontSize: 12 }}>{data.dep_name}</Text>
-
                 </View>
 
             </View>
@@ -94,4 +105,8 @@ function Item({ data, navigation }) {
     );
 }
 
-
+const innerStyle = StyleSheet.create({
+    container: {
+        flex: 1,
+    }
+})

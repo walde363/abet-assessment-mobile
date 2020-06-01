@@ -10,7 +10,7 @@ import DropDownPicker from 'react-native-dropdown-picker';
 import yelp from '../api/yelp';
 
 const AssesmentList = ({ navigation, route }) => {
-    
+
     // state for assessments
     const [assessments, setAssessments] = useState([]);
 
@@ -124,7 +124,14 @@ const AssesmentList = ({ navigation, route }) => {
     useEffect(() => {
         // get assessment data from the internet
         fetchAssessments();
-    }, []);
+
+        const unsubscribe = navigation.addListener('focus', () => {
+            // do something
+            fetchAssessments();
+        });
+
+        return unsubscribe;
+    }, [navigation]);
 
     return (
         <View style={styles.AllOptionsConteiner}>
@@ -205,7 +212,7 @@ const AssesmentList = ({ navigation, route }) => {
                 data={filterByStatus(route.params?.status)}
                 navigation={navigation}
                 isLoading={isLoading}
-                loadAgain={ () => fetchAssessments()}
+                loadAgain={() => fetchAssessments()}
             />
         </View>
     );

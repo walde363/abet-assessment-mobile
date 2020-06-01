@@ -99,10 +99,11 @@ const styles = StyleSheet.create({
         borderWidth: 1
     },
     notFoundImage: {
-        width: 250,
-        
+        width: "70%",
         borderRadius: 5,
-        marginBottom: 5
+        marginBottom: 5,
+        marginLeft: '15%',
+        marginTop: "20%"
     },
 })
 

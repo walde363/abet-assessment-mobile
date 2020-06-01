@@ -1,12 +1,15 @@
 import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, Alert } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 
 import styles from '../styles/styles';
+import yelp from '../api/yelp';
 
 const AssesmentReport = ({ navigation, route }) => {
 
     const assesmentData = route.params?.data;
+
+    // console.log(assesmentData);
 
     return (
         <View style={styles.AllOptionsConteiner}>
@@ -77,6 +80,77 @@ const AssesmentReport = ({ navigation, route }) => {
                     <Text style={innerStyles.columnInformation}>{assesmentData.status}</Text>
                 </View>
 
+                {(assesmentData.status != "completed")
+                    ? null
+                    : (
+                        <View style={innerStyles.containerCompleted}>
+
+                            <TouchableOpacity style={[innerStyles.btn, innerStyles.btnProgress]}
+                                onPress={async () => {
+                                    let response = await yelp.post('/post/changeAssessmentStatus', { id: assesmentData.assessment_ID, status: "in_progress" })
+                                    response = response.data;
+
+                                    if (!response || !response.success) {
+                                        Alert.alert("Sorry!", response.message || "Cannot Update Assessment", [
+                                            {
+                                                text: "OK",
+                                                onPress: () => {
+                                                    navigation.pop()
+                                                },
+                                                style: "cancel"
+                                            },
+                                        ]);
+                                    } else {
+
+                                        Alert.alert("Success!", response.message, [
+                                            {
+                                                text: "OK",
+                                                onPress: () => {
+                                                    navigation.pop()
+                                                },
+                                                style: "cancel"
+                                            },
+                                        ]);
+                                    }
+                                }}
+                            >
+                                <Text style={[innerStyles.textBtn]}> Move To Progress </Text>
+                            </TouchableOpacity>
+
+                            <TouchableOpacity style={[innerStyles.btn, innerStyles.btnArchived]}
+                                onPress={async () => {
+                                    let response = await yelp.post('/post/changeAssessmentStatus', { id: assesmentData.assessment_ID, status: "archived" })
+                                    response = response.data;
+
+                                    if (!response || !response.success) {
+                                        Alert.alert("Sorry!", response.message || "Cannot Update Assessment", [
+                                            {
+                                                text: "OK",
+                                                onPress: () => {
+                                                    navigation.pop()
+                                                },
+                                                style: "cancel"
+                                            },
+                                        ]);
+                                    } else {
+
+                                        Alert.alert("Success!", response.message, [
+                                            {
+                                                text: "OK",
+                                                onPress: () => {
+                                                    navigation.pop()
+                                                },
+                                                style: "cancel"
+                                            },
+                                        ]);
+                                    }
+                                }}
+                            >
+                                <Text style={[innerStyles.textBtn, innerStyles.textArchived]}> Move To Archived </Text>
+                            </TouchableOpacity>
+                        </View>
+                    )
+                }
             </View>
         </View>
     );
@@ -109,6 +183,33 @@ const innerStyles = StyleSheet.create({
     },
     bgOdd: {
         backgroundColor: 'rgba(210, 215, 211,0.5)'
+    },
+    containerCompleted: {
+        flexDirection: 'row',
+        marginTop: 50,
+    },
+    btn: {
+        padding: 10,
+        width: "40%",
+        borderRadius: 5,
+
+    },
+    btnProgress: {
+        backgroundColor: '#28a745',
+        marginLeft: "5%"
+    },
+    btnArchived: {
+        backgroundColor: '#ffc107',
+        marginLeft: "10%"
+
+    },
+    textBtn: {
+        textAlign: "center",
+        color: 'white',
+        fontWeight: 'bold'
+    },
+    textArchived: {
+        color: 'black'
     }
 });
 
